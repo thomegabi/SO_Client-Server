@@ -35,13 +35,14 @@ def handle_client(client_socket, client_address):
                 path = json_message['command'].strip() if json_message['command'] else os.getcwd()
                 try:
                     files = os.listdir(path)
-                    response = json.dumps(files) + "\n"
-                    print(f"Enviando arquivos do diretório {path}: {response}")
+                    response = "\n".join(files) + "\n"  # Converte a lista de arquivos em uma string com quebras de linha
+                    print(f"Enviando arquivos do diretório {path}:\n{response}")
                     client_socket.send(response.encode('utf-8'))
                 except FileNotFoundError:
-                    response = json.dumps([]) + "\n"
-                    print(f"Diretório não encontrado: {path}. Enviando: {response}")
+                    response = "\n"
+                    print(f"Diretório não encontrado: {path}. Enviando resposta vazia.")
                     client_socket.send(response.encode('utf-8'))
+
             elif json_message['action'] == 'sys_info':
                 print(f"Comando 'sys_info' recebido de {client_address}")
                 info = {
