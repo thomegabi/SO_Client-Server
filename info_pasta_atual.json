@@ -1,0 +1,42 @@
+[
+    {
+        "nome": "cliente.java",
+        "tamanho_bytes": 1585,
+        "ultima_modificacao": 1716417821.5613134
+    },
+    {
+        "nome": "criador-json.py",
+        "tamanho_bytes": 1515,
+        "ultima_modificacao": 1716421353.1097488
+    },
+    {
+        "nome": "server.py",
+        "tamanho_bytes": 2322,
+        "ultima_modificacao": 1716420920.2022927
+    },
+    {
+        "nome": "server_service.py",
+        "tamanho_bytes": 1036,
+        "ultima_modificacao": 1716419847.190733
+    },
+    {
+        "nome": "setup_services.bat",
+        "tamanho_bytes": 260,
+        "ultima_modificacao": 1716419260.35515
+    },
+    {
+        "nome": "server.cpython-312.pyc",
+        "tamanho_bytes": 3497,
+        "ultima_modificacao": 1716420314.9435716
+    },
+    {
+        "nome": "server_service.cpython-312.pyc",
+        "tamanho_bytes": 2016,
+        "ultima_modificacao": 1716420315.3136134
+    },
+    {
+        "nome": "test_client.py",
+        "tamanho_bytes": 1992,
+        "ultima_modificacao": 1716420932.0772471
+    }
+]

@@ -1,0 +1,95 @@
+import java.io.*;
+import java.net.*;
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Client {
+    private static Socket socket;
+    private static BufferedReader reader;
+    private static PrintWriter writer;
+    private static final String[] MESSAGES = {"execute", "list_dir", "sys_info", "mouse_control"};
+
+    public static void main(String[] args) {
+        try {
+            socket = new Socket("localhost", 9999);
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream(), true);
+
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Conexão com o servidor estabelecida com sucesso!");
+
+            Thread sendMessage = new Thread(() -> {
+                try {
+                    while (!Thread.currentThread().isInterrupted()) {
+                        // Mostrar as palavras aceitas como comandos
+                        System.out.println("Comandos possíveis: " + String.join(", ", MESSAGES));
+                        System.out.println("Digite o comando:");
+
+                        String action = scanner.nextLine().trim();
+                        if (isValidMessage(action)) {
+                            String command = "";
+                            if (!action.equals("sys_info")) {
+                                if(action.equals("mouse_control")){
+                                    String aux = "command";
+                                    System.out.println("Parâmetros possiveis: click");
+                                    command = aux + ":" + scanner.nextLine().trim();
+                                }else{
+                                    System.out.println("Digite o parâmetro do comando:");
+                                    command = scanner.nextLine().trim();
+                                }
+                            }
+                               String message = action + "|" + command;
+                               writer.println(message);
+
+                            
+                        } else {
+                            System.out.println("Mensagem inválida. Tente novamente.");
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    scanner.close();
+                    writer.close();
+                }
+            });
+
+            Thread readMessage = new Thread(() -> {
+                try {
+                    while (true) {
+                        String message = reader.readLine();
+                        if (message == null) {
+                            break; // End of stream, server closed connection
+                        }
+                        System.out.println("Server: " + message);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            sendMessage.start();
+            readMessage.start();
+
+            sendMessage.join();
+            readMessage.join();
+
+            socket.close();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (socket != null && !socket.isClosed()) {
+                    socket.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static boolean isValidMessage(String message) {
+        return Arrays.asList(MESSAGES).contains(message);
+    }
+}
