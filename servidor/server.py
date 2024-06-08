@@ -32,13 +32,16 @@ def handle_client(client_socket, client_address):
                 result = subprocess.run(json_message['command'], shell=True, capture_output=True, text=True)
                 client_socket.send((result.stdout + "\n").encode('utf-8'))
             elif json_message['action'] == 'list_dir':
-                path = json_message['command'] if json_message['command'] else server_directory
-                print(f"Nenhum diretorio especificado, printando diretorio padrão: {server_directory}" )
+                path = json_message['command'].strip() if json_message['command'] else os.getcwd()
                 try:
                     files = os.listdir(path)
-                    client_socket.send((json.dumps(files) + "\n").encode('utf-8'))
+                    response = json.dumps(files) + "\n"
+                    print(f"Enviando arquivos do diretório {path}: {response}")
+                    client_socket.send(response.encode('utf-8'))
                 except FileNotFoundError:
-                    client_socket.send((json.dumps([]) + "\n").encode('utf-8'))
+                    response = json.dumps([]) + "\n"
+                    print(f"Diretório não encontrado: {path}. Enviando: {response}")
+                    client_socket.send(response.encode('utf-8'))
             elif json_message['action'] == 'sys_info':
                 print(f"Comando 'sys_info' recebido de {client_address}")
                 info = {

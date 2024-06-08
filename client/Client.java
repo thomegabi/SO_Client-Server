@@ -74,6 +74,7 @@ public class Client {
                     while (true) {
                         String message = reader.readLine();
                         if (message == null) {
+                            System.out.println("Recebido null, terminando leitura.");
                             break;
                         }
                         System.out.println("Servidor: " + message);
@@ -82,6 +83,7 @@ public class Client {
                     e.printStackTrace();
                 }
             });
+
 
             sendMessage.start();
             readMessage.start();
