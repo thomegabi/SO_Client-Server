@@ -30,12 +30,16 @@ def handle_client(client_socket, client_address):
             json_message = {'action': action, 'command': command}
             
             if json_message['action'] == 'list_dir':
-                path = json_message['command'] if json_message['command'] else server_directory
+                path = json_message['command'].strip() if json_message['command'] else os.getcwd()
                 try:
                     files = os.listdir(path)
+                    response = "\n".join(files) + "\n"  # Converte a lista de arquivos em uma string com quebras de linha
+                    print(f"Enviando arquivos do diretório {path}:\n{response}")
                     client_socket.send((json.dumps(files) + '\n').encode('utf-8'))
                 except FileNotFoundError:
-                    client_socket.send((json.dumps([]) + '\n').encode('utf-8'))
+                    response = "\n"
+                    print(f"Diretório não encontrado: {path}. Enviando resposta vazia.")
+                    client_socket.send(response.encode('utf-8'))
             elif json_message['action'] == 'sys_info':
                 info = {
                     'os': os.name,
@@ -60,8 +64,13 @@ def perform_mouse_action(command, params):
     try:
         command = command.split(':')[0].strip()
         if command.strip() == 'limit':
-            print(f"Entrando no limit")
-            limit_mouse_movement(params.get('left', 0), params.get('top', 0), params.get('right', 0), params.get('bottom', 0), params.get('duration', 5))
+            
+            around_size = int(params.get('around_size'))  # Obtém o tamanho da área ao redor ou define como 100 se não fornecido
+            duration = int(params.get('duration'))  # Obtém a duração ou define como 5 segundos se não fornecido
+            print(f"Entrando no limit a:{around_size} e d:{duration}")
+
+            limit_mouse_movement(around_size, duration)
+
         elif command.strip() == 'lock':
             lock_mouse_movement()
         else:
@@ -71,7 +80,7 @@ def perform_mouse_action(command, params):
 
 import pyautogui
 
-def limit_mouse_movement(around_size):
+def limit_mouse_movement(around_size, duration):
     try:
         current_x, current_y = pyautogui.position()
         left = current_x - around_size
@@ -79,7 +88,9 @@ def limit_mouse_movement(around_size):
         right = current_x + around_size
         bottom = current_y + around_size
 
-        while True:
+        start_time = time.time()
+
+        while time.time() - start_time < duration:
             new_x, new_y = pyautogui.position()
             if not (left <= new_x <= right and top <= new_y <= bottom):
                 pyautogui.moveTo(

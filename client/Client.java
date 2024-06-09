@@ -34,17 +34,21 @@ public class Client {
                                     System.out.println("Digite o comando do mouse:");
                                     command = scanner.nextLine().trim();
                                     if (command.equals("limit")) {
-                                        System.out.println("Digite o limite esquerdo:");
-                                        int left = Integer.parseInt(scanner.nextLine().trim());
-                                        System.out.println("Digite o limite superior:");
-                                        int top = Integer.parseInt(scanner.nextLine().trim());
-                                        System.out.println("Digite o limite direito:");
-                                        int right = Integer.parseInt(scanner.nextLine().trim());
-                                        System.out.println("Digite o limite inferior:");
-                                        int bottom = Integer.parseInt(scanner.nextLine().trim());
-                                        System.out.println("Digite a duração do limite:");
+                                        System.out.println("Digite o tamanho da área ao redor:");
+                                        int aroundSize = Integer.parseInt(scanner.nextLine().trim());
+                                        while (aroundSize <= 0) {
+                                            System.out.println("O tamanho da área ao redor deve ser maior que zero. Digite novamente:");
+                                            aroundSize = Integer.parseInt(scanner.nextLine().trim());
+                                        }
+
+                                        System.out.println("Digite a duração em segundos:");
                                         int duration = Integer.parseInt(scanner.nextLine().trim());
-                                        command = command + ":{\"left\":" + left + ",\"top\":" + top + ",\"right\":" + right + ",\"bottom\":" + bottom + ",\"duration\":" + duration + "}";
+                                        while (duration <= 0) {
+                                            System.out.println("A duração deve ser maior que zero. Digite novamente:");
+                                            duration = Integer.parseInt(scanner.nextLine().trim());
+                                        }
+
+    command = command + "|{" + "\"around_size\":" + aroundSize + ",\"duration\":" + duration + "}";
                                     } else if (command.equals("lock")) {
                                         command = "lock";
                                 }
