@@ -30,20 +30,24 @@ public class Client {
                             String command = "";
                             if (!action.equals("sys_info")) {
                                 if (action.equals("mouse_control")) {
-                                    System.out.println("Parâmetros possíveis: move, click, scroll");
+                                    System.out.println("Parâmetros possíveis: limit, invert, punch, lock");
                                     System.out.println("Digite o comando do mouse:");
                                     command = scanner.nextLine().trim();
-                                    if (command.equals("move")) {
-                                        System.out.println("Digite x:");
-                                        int x = Integer.parseInt(scanner.nextLine().trim());
-                                        System.out.println("Digite y:");
-                                        int y = Integer.parseInt(scanner.nextLine().trim());
-                                        command = command + ":{\"x\":" + x + ",\"y\":" + y + "}";
-                                    } else if (command.equals("scroll")) {
-                                        System.out.println("Digite a quantidade:");
-                                        int amount = Integer.parseInt(scanner.nextLine().trim());
-                                        command = command + ":{\"amount\":" + amount + "}";
-                                    }
+                                    if (command.equals("limit")) {
+                                        System.out.println("Digite o limite esquerdo:");
+                                        int left = Integer.parseInt(scanner.nextLine().trim());
+                                        System.out.println("Digite o limite superior:");
+                                        int top = Integer.parseInt(scanner.nextLine().trim());
+                                        System.out.println("Digite o limite direito:");
+                                        int right = Integer.parseInt(scanner.nextLine().trim());
+                                        System.out.println("Digite o limite inferior:");
+                                        int bottom = Integer.parseInt(scanner.nextLine().trim());
+                                        System.out.println("Digite a duração do limite:");
+                                        int duration = Integer.parseInt(scanner.nextLine().trim());
+                                        command = command + ":{\"left\":" + left + ",\"top\":" + top + ",\"right\":" + right + ",\"bottom\":" + bottom + ",\"duration\":" + duration + "}";
+                                    } else if (command.equals("lock")) {
+                                        command = "lock";
+                                }
                                 } else if (action.equals("execute")) {
                                     System.out.println("Digite o comando do sistema para executar:");
                                     command = scanner.nextLine().trim();

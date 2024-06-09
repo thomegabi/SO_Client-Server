@@ -5,6 +5,7 @@ import subprocess
 import json
 import platform
 import pyautogui
+import time
 
 clients = []
 current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -28,37 +29,25 @@ def handle_client(client_socket, client_address):
             
             json_message = {'action': action, 'command': command}
             
-            if json_message['action'] == 'execute':
-                result = subprocess.run(json_message['command'], shell=True, capture_output=True, text=True)
-                client_socket.send((result.stdout + "\n").encode('utf-8'))
-            elif json_message['action'] == 'list_dir':
-                path = json_message['command'].strip() if json_message['command'] else os.getcwd()
+            if json_message['action'] == 'list_dir':
+                path = json_message['command'] if json_message['command'] else server_directory
                 try:
                     files = os.listdir(path)
-                    response = "\n".join(files) + "\n"  # Converte a lista de arquivos em uma string com quebras de linha
-                    print(f"Enviando arquivos do diretório {path}:\n{response}")
-                    client_socket.send(response.encode('utf-8'))
+                    client_socket.send((json.dumps(files) + '\n').encode('utf-8'))
                 except FileNotFoundError:
-                    response = "\n"
-                    print(f"Diretório não encontrado: {path}. Enviando resposta vazia.")
-                    client_socket.send(response.encode('utf-8'))
-
+                    client_socket.send((json.dumps([]) + '\n').encode('utf-8'))
             elif json_message['action'] == 'sys_info':
-                print(f"Comando 'sys_info' recebido de {client_address}")
                 info = {
                     'os': os.name,
                     'platform': platform.system(),
                     'platform_release': platform.release(),
                     'cwd': os.getcwd()
                 }
-                print(f"Tentando enviar resultados")
-                try:
-                    client_socket.send((json.dumps(info) + "\n").encode('utf-8'))
-                    print(f"Resultados enviados com sucesso para {client_address}")
-                except Exception as e:
-                    print(f"Falha ao enviar resultados para {client_address}: {e}")
+                client_socket.send((json.dumps(info) + '\n').encode('utf-8'))
             elif json_message['action'] == 'mouse_control':
-                perform_mouse_action(json_message['command'], json_message.get('params', {}))
+                command, *params = json_message['command'].split('|', 1)
+                params = params[0] if params else '{}'
+                perform_mouse_action(command, json.loads(params))
     except Exception as e:
         print(f"Exceção inesperada no cliente {client_address}: {e}")
     finally:
@@ -67,12 +56,53 @@ def handle_client(client_socket, client_address):
         client_socket.close()
 
 def perform_mouse_action(command, params):
-    if command == 'move':
-        pyautogui.moveTo(params.get('x', 0), params.get('y', 0))
-    elif command == 'click':
-        pyautogui.click()
-    elif command == 'scroll':
-        pyautogui.scroll(params.get('amount', 0))
+    print(f"Entrando no perform com o comando: {command}")
+    try:
+        command = command.split(':')[0].strip()
+        if command.strip() == 'limit':
+            print(f"Entrando no limit")
+            limit_mouse_movement(params.get('left', 0), params.get('top', 0), params.get('right', 0), params.get('bottom', 0), params.get('duration', 5))
+        elif command.strip() == 'lock':
+            lock_mouse_movement()
+        else:
+            print(f"Comando desconhecido: {command}")
+    except Exception as e:
+        print(f"Erro ao processar ação do mouse: {e}")
+
+import pyautogui
+
+def limit_mouse_movement(around_size):
+    try:
+        current_x, current_y = pyautogui.position()
+        left = current_x - around_size
+        top = current_y - around_size
+        right = current_x + around_size
+        bottom = current_y + around_size
+
+        while True:
+            new_x, new_y = pyautogui.position()
+            if not (left <= new_x <= right and top <= new_y <= bottom):
+                pyautogui.moveTo(
+                    min(max(left, new_x), right), 
+                    min(max(top, new_y), bottom)
+                )
+    except Exception as e:
+        print(f"Erro ao limitar o movimento do mouse: {e}")
+
+
+def lock_mouse_movement():
+    print(f"Entrou")
+    start_time = time.time()
+    x, y = pyautogui.position()
+    print(f"Travando o mouse na posição ({x}, {y}) por 5 segundos")
+
+    def lock_movement():
+        while time.time() - start_time < 5:
+            pyautogui.moveTo(x, y)
+            time.sleep(0.01)
+        print("Destravando o mouse")
+
+    threading.Thread(target=lock_movement).start()
 
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
