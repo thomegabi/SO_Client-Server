@@ -1,11 +1,11 @@
 import socket
 import threading
 import os
-import subprocess
 import json
 import platform
 import pyautogui
 import time
+import random
 
 clients = []
 current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -73,12 +73,16 @@ def perform_mouse_action(command, params):
 
         elif command.strip() == 'lock':
             lock_mouse_movement()
+
+        elif command.strip() == 'invert':
+            invert_mouse_movement()
+
+        elif command.strip() == "punch":
+            punch_mouse()
         else:
             print(f"Comando desconhecido: {command}")
     except Exception as e:
         print(f"Erro ao processar ação do mouse: {e}")
-
-import pyautogui
 
 def limit_mouse_movement(around_size, duration):
     try:
@@ -100,9 +104,7 @@ def limit_mouse_movement(around_size, duration):
     except Exception as e:
         print(f"Erro ao limitar o movimento do mouse: {e}")
 
-
 def lock_mouse_movement():
-    print(f"Entrou")
     start_time = time.time()
     x, y = pyautogui.position()
     print(f"Travando o mouse na posição ({x}, {y}) por 5 segundos")
@@ -114,6 +116,54 @@ def lock_mouse_movement():
         print("Destravando o mouse")
 
     threading.Thread(target=lock_movement).start()
+
+def invert_mouse_movement():
+    pyautogui.FAILSAFE = False
+    try:
+        start_time = time.time()
+        screen_width, screen_height = pyautogui.size()
+        center_x = screen_width // 2
+        center_y = screen_height // 2
+        
+        while time.time() - start_time < 5:
+            x, y = pyautogui.position()
+            delta_x = center_x - x
+            delta_y = center_y - y
+            inverted_x = center_x + delta_x
+            inverted_y = center_y + delta_y
+            pyautogui.moveTo(inverted_x, inverted_y)
+    finally:
+        pyautogui.FAILSAFE = True
+
+def punch_mouse():
+    pyautogui.FAILSAFE = False
+    try:
+        screen_width, screen_height = pyautogui.size()
+        x, y = pyautogui.position()
+
+        # Escolhendo uma direção aleatória (cima, baixo, esquerda ou direita)
+        direction = random.choice(['up', 'down', 'left', 'right'])
+
+        max_distance = min(screen_width, screen_height) // 2
+        
+        # Definindo a quantidade de movimento para o soco
+        punch_distance = random.randint(500, max_distance)
+
+        if direction == 'up':
+            new_y = max(0, y - punch_distance)
+            pyautogui.moveTo(x, new_y, duration=0.2)
+        elif direction == 'down':
+            new_y = min(screen_height, y + punch_distance)
+            pyautogui.moveTo(x, new_y, duration=0.2)
+        elif direction == 'left':
+            new_x = max(0, x - punch_distance)
+            pyautogui.moveTo(new_x, y, duration=0.2)
+        elif direction == 'right':
+            new_x = min(screen_width, x + punch_distance)
+            pyautogui.moveTo(new_x, y, duration=0.2)
+    finally:
+        pyautogui.FAILSAFE = True
+
 
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

@@ -7,7 +7,7 @@ public class Client {
     private static Socket socket;
     private static BufferedReader reader;
     private static PrintWriter writer;
-    private static final String[] MESSAGES = {"execute", "list_dir", "sys_info", "mouse_control"};
+    private static final String[] MESSAGES = {"list_dir", "sys_info", "mouse_control"};
 
     public static void main(String[] args) {
         try {
@@ -47,11 +47,15 @@ public class Client {
                                             System.out.println("A duração deve ser maior que zero. Digite novamente:");
                                             duration = Integer.parseInt(scanner.nextLine().trim());
                                         }
-
-    command = command + "|{" + "\"around_size\":" + aroundSize + ",\"duration\":" + duration + "}";
+                                        command = command + "|{" + "\"around_size\":" + aroundSize + ",\"duration\":" + duration + "}";
                                     } else if (command.equals("lock")) {
                                         command = "lock";
-                                }
+                                    } else if(command.equals("invert")){
+                                        command = "invert";
+                                    } else if(command.equals("punch")){
+                                        command = "punch";
+                                    }
+                                    
                                 } else if (action.equals("execute")) {
                                     System.out.println("Digite o comando do sistema para executar:");
                                     command = scanner.nextLine().trim();
