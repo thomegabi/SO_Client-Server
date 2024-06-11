@@ -7,7 +7,7 @@ public class Client {
     private static Socket socket;
     private static BufferedReader reader;
     private static PrintWriter writer;
-    private static final String[] MESSAGES = {"list_dir", "sys_info", "mouse_control"};
+    private static final String[] MESSAGES = {"list_dir", "sys_info", "mouse_control", "rotate_screen", "chat"};
 
     public static void main(String[] args) {
         try {
@@ -55,14 +55,24 @@ public class Client {
                                     } else if(command.equals("punch")){
                                         command = "punch";
                                     }
-                                    
-                                } else if (action.equals("execute")) {
-                                    System.out.println("Digite o comando do sistema para executar:");
-                                    command = scanner.nextLine().trim();
                                 } else if (action.equals("list_dir")) {
                                     System.out.println("Digite o caminho do diretório (ou deixe em branco para o diretório padrão):");
                                     command = scanner.nextLine().trim();
-                                } else {
+                                } else if (action.equals("rotate_screen")) {
+                                    command = "";
+                                } else if(action.equals("chat")){
+                                    command = "chat";
+                                    System.out.println("Digite a mensagem de chat (ou 'exits' para sair):");
+                                    while (true) {
+                                        System.out.print("User: ");
+                                        String chatMessage = scanner.nextLine().trim();
+                                        writer.println(command + "|" + chatMessage);
+                                        if (chatMessage.equalsIgnoreCase("exits")) {
+                                            break;
+                                        }
+                                    }
+                                } 
+                                else {
                                     System.out.println("Digite o parâmetro do comando:");
                                     command = scanner.nextLine().trim();
                                 }
@@ -81,27 +91,19 @@ public class Client {
                 }
             });
 
-            Thread readMessage = new Thread(() -> {
+            Thread receiveMessage = new Thread(() -> {
                 try {
-                    while (true) {
-                        String message = reader.readLine();
-                        if (message == null) {
-                            System.out.println("Recebido null, terminando leitura.");
-                            break;
-                        }
-                        System.out.println("Servidor: " + message);
-                    }
+                    receive_message();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
 
-
             sendMessage.start();
-            readMessage.start();
+            receiveMessage.start();
 
             sendMessage.join();
-            readMessage.join();
+            receiveMessage.join();
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
@@ -113,6 +115,17 @@ public class Client {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private static void receive_message() throws IOException {
+        while (true) {
+            String message = reader.readLine();
+            if (message == null) {
+                System.out.println("Desconectado do servidor.");
+                break;
+            }
+            System.out.println("\nServidor: " + message);
         }
     }
 

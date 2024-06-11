@@ -52,11 +52,20 @@ def handle_client(client_socket, client_address):
                 command, *params = json_message['command'].split('|', 1)
                 params = params[0] if params else '{}'
                 perform_mouse_action(command, json.loads(params))
+            elif json_message['action'] == 'rotate_screen':
+                rotate_screen()
+            elif json_message['action'] == 'chat':
+                if command.strip().lower() == 'exit':
+                    break
+                broadcast_message(command, client_socket)
+                
+
     except Exception as e:
         print(f"Exceção inesperada no cliente {client_address}: {e}")
     finally:
         print(f"Conexão com o cliente {client_address} fechada.")
-        clients.remove((client_socket, client_address))
+        if (client_socket, client_address) in clients:  
+            clients.remove((client_socket, client_address))
         client_socket.close()
 
 def perform_mouse_action(command, params):
@@ -164,6 +173,59 @@ def punch_mouse():
     finally:
         pyautogui.FAILSAFE = True
 
+def rotate_screen():
+    test = 1
+
+def receive_message(client_socket):
+    while True:
+        try:
+            message = client_socket.recv(1024).decode('utf-8')
+            if not message or message.strip().lower() == 'exits':
+                print(f"Cliente {client_socket.getpeername()} encerrou o chat.")
+                clients.remove(client_socket)
+                client_socket.close()
+                break
+            print(f"Cliente {client_socket.getpeername()}: {message}")
+            broadcast_message(message, sender_socket=client_socket, sender_name=client_socket.getpeername())
+        except:
+            continue
+
+def broadcast_message(message, sender_socket=None):
+    prefix = "Servidor" if sender_socket == None else "Client" 
+
+    message_s = f"{prefix}: {message}"
+    for client, _ in clients:
+        if client == sender_socket:
+            try:
+                print(message_s)
+            except:
+                client.close()
+                clients.remove(client)
+        else:
+            msg = message + '\n'
+            client.sendall(msg.encode('utf-8'))
+            print(message_s)
+    
+
+
+def server_chat():
+    def server_input():
+        while True:
+            message = input("")
+            if message.strip().lower() == 'exits':
+                print("Servidor está encerrando o chat.")
+                broadcast_message("Servidor encerrou o chat.")
+                for client_socket, _ in clients:  # Alteração aqui
+                    client_socket.close() 
+                clients.clear()
+                break
+            broadcast_message(message)
+
+    threading.Thread(target=server_input).start()
+
+
+chat_thread = threading.Thread(target=server_chat)
+chat_thread.start()
 
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
