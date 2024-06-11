@@ -66,7 +66,7 @@ def handle_client(client_socket, client_address):
             elif json_message['action'] == 'chat':
                 if command.strip().lower() == 'exit':
                     break
-                broadcast_message(command, client_socket)
+                broadcast_message(command, client_socket, client_address)
             elif json_message['action'] == 'delete_user':
                 delete_user(command.strip(), client_socket)
                     
@@ -201,10 +201,10 @@ def receive_message(client_socket):
         except:
             continue
 
-def broadcast_message(message, sender_socket=None):
+def broadcast_message(message, sender_socket=None, client_addrees=None):
     prefix = "Servidor" if sender_socket == None else "Client" 
 
-    message_s = f"{prefix}: {message}"
+    message_s = f"{prefix}{client_addrees}: {message}"
     for client, _ in clients:
         if client == sender_socket:
             try:
