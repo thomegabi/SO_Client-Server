@@ -6,15 +6,24 @@ import platform
 import pyautogui
 import time
 import random
+from dataclasses import dataclass
 
 clients = []
+user_file ='users.json'
 current_directory = os.path.dirname(os.path.abspath(__file__))
 server_directory = os.path.join(current_directory, 'servidor')
 
 def handle_client(client_socket, client_address):
     global clients
+
+    if not authenticate(client_socket):
+        print(f"Cliente {client_address} falhou na autenticação.")
+        client_socket.close()
+        return
+    
     clients.append((client_socket, client_address))
     print(f"Cliente {client_address} conectado com sucesso!")
+    
     try:
         while True:
             message = client_socket.recv(1024).decode('utf-8')
@@ -33,7 +42,7 @@ def handle_client(client_socket, client_address):
                 path = json_message['command'].strip() if json_message['command'] else os.getcwd()
                 try:
                     files = os.listdir(path)
-                    response = "\n".join(files) + "\n"  # Converte a lista de arquivos em uma string com quebras de linha
+                    response = "\n".join(files) + "\n"
                     print(f"Enviando arquivos do diretório {path}:\n{response}")
                     client_socket.send((json.dumps(files) + '\n').encode('utf-8'))
                 except FileNotFoundError:
@@ -58,15 +67,17 @@ def handle_client(client_socket, client_address):
                 if command.strip().lower() == 'exit':
                     break
                 broadcast_message(command, client_socket)
-                
-
+            elif json_message['action'] == 'delete_user':
+                delete_user(command.strip(), client_socket)
+                    
     except Exception as e:
         print(f"Exceção inesperada no cliente {client_address}: {e}")
     finally:
         print(f"Conexão com o cliente {client_address} fechada.")
-        if (client_socket, client_address) in clients:  
+        if (client_socket, client_address) in clients:
             clients.remove((client_socket, client_address))
         client_socket.close()
+
 
 def perform_mouse_action(command, params):
     print(f"Entrando no perform com o comando: {command}")
@@ -206,8 +217,6 @@ def broadcast_message(message, sender_socket=None):
             client.sendall(msg.encode('utf-8'))
             print(message_s)
     
-
-
 def server_chat():
     def server_input():
         while True:
@@ -223,9 +232,58 @@ def server_chat():
 
     threading.Thread(target=server_input).start()
 
-
 chat_thread = threading.Thread(target=server_chat)
 chat_thread.start()
+
+def load_users():
+    if not os.path.exists(user_file):
+        return {}
+    with open(user_file, 'r') as file:
+        return json.load(file)
+
+def save_users(users):
+    with open(user_file, 'w') as file:
+        json.dump(users, file)
+
+users = load_users()
+
+def authenticate(client_socket):
+    try:
+        credentials = client_socket.recv(1024).decode('utf-8')
+        action, username, password = credentials.split('|')
+        for username, password in users.items():
+            print(f"Username: {username}, Password: {password}")
+        if action == 'register':
+            if username in users:
+                client_socket.send(('USER_EXISTS' + '\n').encode('utf-8'))
+                return None
+            else:
+                users[username] = password
+                save_users(users)
+                client_socket.send(('REGISTER_SUCCESS' + '\n').encode('utf-8'))
+                return username
+        elif action == 'login':
+            if username in users and users[username] == password:
+                client_socket.send(('AUTH_SUCCESS' + '\n').encode('utf-8'))
+                return username
+            else:
+                client_socket.send(('AUTH_FAILED' + '\n').encode('utf-8'))
+                return None
+        else:
+            client_socket.send(('INVALID_ACTION' + '\n').encode('utf-8'))
+            return None
+    except Exception as e:
+        print(f"Erro na autenticação: {e}")
+        client_socket.send(('AUTH_FAILED' + '\n').encode('utf-8'))
+        return None
+
+def delete_user(username, client_socket):
+    print(users.items())
+    if username in users:
+        del users[username]
+        client_socket.send("Usuario deletado com sucesso\n".encode('utf-8'))
+    else:
+        client_socket.send("Usuario não encontrado\n".encode('utf-8'))
 
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

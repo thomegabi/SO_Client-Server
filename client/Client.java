@@ -7,7 +7,7 @@ public class Client {
     private static Socket socket;
     private static BufferedReader reader;
     private static PrintWriter writer;
-    private static final String[] MESSAGES = {"list_dir", "sys_info", "mouse_control", "rotate_screen", "chat"};
+    private static final String[] MESSAGES = {"list_dir", "sys_info", "mouse_control", "rotate_screen", "chat", "delete_user"};
 
     public static void main(String[] args) {
         try {
@@ -19,11 +19,52 @@ public class Client {
 
             System.out.println("Conexão com o servidor estabelecida com sucesso!");
 
+            // Autenticação
+            boolean authenticated = false;
+            while (!authenticated) {
+                System.out.println("Digite 'login' para fazer login ou 'register' para se registrar:");
+                String action = scanner.nextLine().trim().toLowerCase();
+                if (action.equals("login") || action.equals("register")) {
+                    System.out.println("Digite o nome de usuário:");
+                    String username = scanner.nextLine().trim();
+                    System.out.println("Digite a senha:");
+                    String password = scanner.nextLine().trim();
+                    String credentials = action + "|" + username + "|" + password;
+                    writer.println(credentials);
+
+                    String response = reader.readLine();
+                    if (response == null) {
+                        System.out.println("Erro na comunicação com o servidor. Tente novamente.");
+                        continue;
+                    }
+                    if (response.equals("AUTH_SUCCESS")) {
+                        authenticated = true;
+                        System.out.println("Autenticação bem-sucedida.");
+                    } else if (response.equals("REGISTER_SUCCESS")) {
+                        authenticated = true;
+                        System.out.println("Registro bem-sucedido.");
+                    } else if (response.equals("USER_EXISTS")) {
+                        System.out.println("Usuário já existe. Tente novamente.");
+                    } else if (response.equals("AUTH_FAILED")) {
+                        System.out.println("Autenticação falhou. Tente novamente.");
+                    } else {
+                        System.out.println("Ação inválida. Tente novamente.");
+                    }
+                } else {
+                    System.out.println("Comando inválido. Digite 'login' ou 'register'.");
+                }
+            }
+
             Thread sendMessage = new Thread(() -> {
                 try {
                     while (!Thread.currentThread().isInterrupted()) {
-                        System.out.println("Comandos possíveis: " + String.join(", ", MESSAGES));
-                        System.out.println("Digite o comando:");
+                        try {
+                                Thread.sleep(1000); // Pausa a execução da thread por 2000 milissegundos (ou 2 segundos)
+                        } catch (InterruptedException e) {
+                                e.printStackTrace(); // Lida com a exceção se a thread for interrompida enquanto está dormindo
+                            }
+                        System.out.println("\nComandos possíveis: " + String.join(", ", MESSAGES));
+                        System.out.print("Digite o comando: ");
 
                         String action = scanner.nextLine().trim();
                         if (isValidMessage(action)) {
@@ -71,7 +112,10 @@ public class Client {
                                             break;
                                         }
                                     }
-                                } 
+                                } else if(action.equals("delete_user")){
+                                    System.out.println("Digite o nome do usuário a ser deletado");
+                                    command = scanner.nextLine().trim();
+                                }
                                 else {
                                     System.out.println("Digite o parâmetro do comando:");
                                     command = scanner.nextLine().trim();
@@ -99,11 +143,12 @@ public class Client {
                 }
             });
 
-            sendMessage.start();
             receiveMessage.start();
-
-            sendMessage.join();
+            sendMessage.start();
+            
             receiveMessage.join();
+            sendMessage.join();
+            
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
