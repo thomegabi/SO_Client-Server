@@ -170,7 +170,7 @@ public class Client {
                 System.out.println("Desconectado do servidor.");
                 break;
             }
-            System.out.println("\nServidor: " + message);
+            System.out.println("\nServidor." + message);
         }
     }
 

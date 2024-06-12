@@ -16,20 +16,21 @@ server_directory = os.path.join(current_directory, 'servidor')
 def handle_client(client_socket, client_address):
     global clients
 
-    if not authenticate(client_socket):
+    username = authenticate(client_socket)
+    if not username:
         print(f"Cliente {client_address} falhou na autenticação.")
         client_socket.close()
         return
     
-    clients.append((client_socket, client_address))
-    print(f"Cliente {client_address} conectado com sucesso!")
+    clients.append((client_socket, client_address, username))
+    print(f"Cliente {username} ({client_address}) conectado com sucesso!")
     
     try:
         while True:
             message = client_socket.recv(1024).decode('utf-8')
             if not message:
                 break
-            print(f"Recebido de {client_address}: {message}")
+            print(f"Recebido de {username} ({client_address}): {message}")
             try:
                 action, command = message.split('|', 1)
             except ValueError:
@@ -66,7 +67,7 @@ def handle_client(client_socket, client_address):
             elif json_message['action'] == 'chat':
                 if command.strip().lower() == 'exit':
                     break
-                broadcast_message(command, client_socket, client_address)
+                broadcast_message(command, client_socket, username)
             elif json_message['action'] == 'delete_user':
                 delete_user(command.strip(), client_socket)
                     
@@ -74,8 +75,8 @@ def handle_client(client_socket, client_address):
         print(f"Exceção inesperada no cliente {client_address}: {e}")
     finally:
         print(f"Conexão com o cliente {client_address} fechada.")
-        if (client_socket, client_address) in clients:
-            clients.remove((client_socket, client_address))
+        if (client_socket, client_address, username) in clients:
+            clients.remove((client_socket, client_address, username))
         client_socket.close()
 
 
@@ -201,22 +202,26 @@ def receive_message(client_socket):
         except:
             continue
 
-def broadcast_message(message, sender_socket=None, client_addrees=None):
-    prefix = "Servidor" if sender_socket == None else "Client" 
+def broadcast_message(message, sender_socket=None, username=None):
+    if sender_socket:
+        prefix = f"{username}"
+    else:
+        prefix = "Servidor"
 
-    message_s = f"{prefix}{client_addrees}: {message}"
-    for client, _ in clients:
-        if client == sender_socket:
+    message_s = f"{prefix}: {message}"
+    msg = message_s + '\n'
+    for client, _, _ in clients:
+        if client != sender_socket:
             try:
-                print(message_s)
-            except:
+                client.sendall(msg.encode('utf-8'))
+            except Exception as e:
+                print(f"Erro ao enviar mensagem para o cliente: {e}")
                 client.close()
-                clients.remove(client)
+                clients.remove((client, _, _))
         else:
-            msg = message + '\n'
             client.sendall(msg.encode('utf-8'))
-            print(message_s)
-    
+            print(f"Mensagem do {prefix}: {message}")
+   
 def server_chat():
     def server_input():
         while True:
@@ -228,7 +233,7 @@ def server_chat():
                     client_socket.close() 
                 clients.clear()
                 break
-            broadcast_message(message)
+            broadcast_message((message + '\n'))
 
     threading.Thread(target=server_input).start()
 
@@ -251,8 +256,6 @@ def authenticate(client_socket):
     try:
         credentials = client_socket.recv(1024).decode('utf-8')
         action, username, password = credentials.split('|')
-        for username, password in users.items():
-            print(f"Username: {username}, Password: {password}")
         if action == 'register':
             if username in users:
                 client_socket.send(('USER_EXISTS' + '\n').encode('utf-8'))
