@@ -271,6 +271,8 @@ def delete_user(username, client_socket):
     if username in users:
         del users[username]
         client_socket.send("Usuario deletado com sucesso\n".encode('utf-8'))
+        with open(user_file, 'w') as file:
+            json.dump(users, file)
     else:
         client_socket.send("Usuario não encontrado\n".encode('utf-8'))
 

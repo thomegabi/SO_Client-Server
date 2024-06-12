@@ -1,8 +1,773 @@
 [
     {
-        "nome": "cliente.java",
-        "tamanho_bytes": 1585,
-        "ultima_modificacao": 1716417821.5613134
+        "nome": "COMMIT_EDITMSG",
+        "tamanho_bytes": 49,
+        "ultima_modificacao": 1718220037.0846624
+    },
+    {
+        "nome": "config",
+        "tamanho_bytes": 308,
+        "ultima_modificacao": 1717805811.040489
+    },
+    {
+        "nome": "description",
+        "tamanho_bytes": 73,
+        "ultima_modificacao": 1717805420.8883188
+    },
+    {
+        "nome": "FETCH_HEAD",
+        "tamanho_bytes": 105,
+        "ultima_modificacao": 1718050474.5239518
+    },
+    {
+        "nome": "HEAD",
+        "tamanho_bytes": 21,
+        "ultima_modificacao": 1717805774.9487803
+    },
+    {
+        "nome": "applypatch-msg.sample",
+        "tamanho_bytes": 478,
+        "ultima_modificacao": 1717805420.8893292
+    },
+    {
+        "nome": "commit-msg.sample",
+        "tamanho_bytes": 896,
+        "ultima_modificacao": 1717805420.89033
+    },
+    {
+        "nome": "fsmonitor-watchman.sample",
+        "tamanho_bytes": 4726,
+        "ultima_modificacao": 1717805420.8923302
+    },
+    {
+        "nome": "post-update.sample",
+        "tamanho_bytes": 189,
+        "ultima_modificacao": 1717805420.8923302
+    },
+    {
+        "nome": "pre-applypatch.sample",
+        "tamanho_bytes": 424,
+        "ultima_modificacao": 1717805420.893327
+    },
+    {
+        "nome": "pre-commit.sample",
+        "tamanho_bytes": 1649,
+        "ultima_modificacao": 1717805420.8943284
+    },
+    {
+        "nome": "pre-merge-commit.sample",
+        "tamanho_bytes": 416,
+        "ultima_modificacao": 1717805420.8943284
+    },
+    {
+        "nome": "pre-push.sample",
+        "tamanho_bytes": 1374,
+        "ultima_modificacao": 1717805420.8963304
+    },
+    {
+        "nome": "pre-rebase.sample",
+        "tamanho_bytes": 4898,
+        "ultima_modificacao": 1717805420.8963304
+    },
+    {
+        "nome": "pre-receive.sample",
+        "tamanho_bytes": 544,
+        "ultima_modificacao": 1717805420.8973346
+    },
+    {
+        "nome": "prepare-commit-msg.sample",
+        "tamanho_bytes": 1492,
+        "ultima_modificacao": 1717805420.8973346
+    },
+    {
+        "nome": "push-to-checkout.sample",
+        "tamanho_bytes": 2783,
+        "ultima_modificacao": 1717805420.8988461
+    },
+    {
+        "nome": "sendemail-validate.sample",
+        "tamanho_bytes": 2308,
+        "ultima_modificacao": 1717805420.899861
+    },
+    {
+        "nome": "update.sample",
+        "tamanho_bytes": 3650,
+        "ultima_modificacao": 1717805420.9008873
+    },
+    {
+        "nome": "index",
+        "tamanho_bytes": 3986,
+        "ultima_modificacao": 1718220037.082663
+    },
+    {
+        "nome": "exclude",
+        "tamanho_bytes": 240,
+        "ultima_modificacao": 1717805420.9018607
+    },
+    {
+        "nome": "HEAD",
+        "tamanho_bytes": 2542,
+        "ultima_modificacao": 1718220037.0886664
+    },
+    {
+        "nome": "main",
+        "tamanho_bytes": 2354,
+        "ultima_modificacao": 1718220037.0886664
+    },
+    {
+        "nome": "main",
+        "tamanho_bytes": 1050,
+        "ultima_modificacao": 1718220043.830501
+    },
+    {
+        "nome": "90d3232490218946764f67b486fe6dcab5b8c4",
+        "tamanho_bytes": 18272,
+        "ultima_modificacao": 1717805517.3575869
+    },
+    {
+        "nome": "9b6cdc23d8956f4a6444eb3d79c268e0590390",
+        "tamanho_bytes": 1427,
+        "ultima_modificacao": 1717965100.3624837
+    },
+    {
+        "nome": "c67b338dd418112caba7c9e7142f0579c2b857",
+        "tamanho_bytes": 3892,
+        "ultima_modificacao": 1718139368.4020448
+    },
+    {
+        "nome": "3ac5f1217ed7a2baf08a989f1c246d86291bb0",
+        "tamanho_bytes": 260,
+        "ultima_modificacao": 1718220037.0816627
+    },
+    {
+        "nome": "003d1282645b9f6c19742b80d0b2052694c5c1",
+        "tamanho_bytes": 1287,
+        "ultima_modificacao": 1717805517.331064
+    },
+    {
+        "nome": "c93f50fbbd1b6c7666b37c797c0f7e05495bbd",
+        "tamanho_bytes": 13311945,
+        "ultima_modificacao": 1717805518.8398955
+    },
+    {
+        "nome": "eeaa3a1304cd853cac97d44eca0c85f8ba079e",
+        "tamanho_bytes": 1074,
+        "ultima_modificacao": 1717805517.5489907
+    },
+    {
+        "nome": "42c2ad29079625bb7f9e236db224f1c5cb7f1a",
+        "tamanho_bytes": 231,
+        "ultima_modificacao": 1717809573.4523404
+    },
+    {
+        "nome": "9846f2a9cc0f719697c0df96a641562c6346aa",
+        "tamanho_bytes": 201,
+        "ultima_modificacao": 1718218513.2630978
+    },
+    {
+        "nome": "dcc65e8788775b48650e3c70740c162d7ad77e",
+        "tamanho_bytes": 230,
+        "ultima_modificacao": 1717965136.8480108
+    },
+    {
+        "nome": "0f2e2c442a5fa323b7043025abd9fd33c8b8eb",
+        "tamanho_bytes": 3350,
+        "ultima_modificacao": 1718144819.3448093
+    },
+    {
+        "nome": "1b184e57298f28865abf83c7530c79fe95289a",
+        "tamanho_bytes": 186,
+        "ultima_modificacao": 1717965136.8515298
+    },
+    {
+        "nome": "803fd4ea19266deb23a83d50d5c25d6ff63d83",
+        "tamanho_bytes": 263,
+        "ultima_modificacao": 1717809447.1176157
+    },
+    {
+        "nome": "cda349b3242db6def0dc7071fc5022d1815621",
+        "tamanho_bytes": 1618,
+        "ultima_modificacao": 1718068007.0556004
+    },
+    {
+        "nome": "bf8c7481b863e2d7d4ec8fb088f2c6d10d17b3",
+        "tamanho_bytes": 1395,
+        "ultima_modificacao": 1717963046.3234806
+    },
+    {
+        "nome": "55499ae6de57bddf3e08f888345af2ce28d5de",
+        "tamanho_bytes": 3874,
+        "ultima_modificacao": 1718218438.010072
+    },
+    {
+        "nome": "33c5448d4ea66f7e153b0846983ea5034f63cd",
+        "tamanho_bytes": 11708,
+        "ultima_modificacao": 1717805517.5928476
+    },
+    {
+        "nome": "f7bc1250006b74987e23c681a95f8fd6b7384e",
+        "tamanho_bytes": 1378,
+        "ultima_modificacao": 1717805518.8601007
+    },
+    {
+        "nome": "f7b2e94b169d919ac8f0c31249e5c7fbfbcf21",
+        "tamanho_bytes": 261,
+        "ultima_modificacao": 1718144845.9377837
+    },
+    {
+        "nome": "5b553ea4aeea5cc878a612930610403aaf7246",
+        "tamanho_bytes": 157,
+        "ultima_modificacao": 1718068026.6083372
+    },
+    {
+        "nome": "0ea9b2dd5b3ee87da3469d4a6bd044a3bcda5f",
+        "tamanho_bytes": 13111250,
+        "ultima_modificacao": 1717805518.1980612
+    },
+    {
+        "nome": "190d098d86fdea5b6067a2e09133a87c5cc530",
+        "tamanho_bytes": 741,
+        "ultima_modificacao": 1717805518.8678808
+    },
+    {
+        "nome": "78c5a8f0de53c0ae01eba0f2a1530d4c8360ee",
+        "tamanho_bytes": 243,
+        "ultima_modificacao": 1718218513.2575634
+    },
+    {
+        "nome": "9589f51675001a7189ed0b3d4c6fa3f31091cb",
+        "tamanho_bytes": 262,
+        "ultima_modificacao": 1717965136.8450232
+    },
+    {
+        "nome": "e97ee5010dbc553615698e3b4e97ccfe425d15",
+        "tamanho_bytes": 976,
+        "ultima_modificacao": 1717805517.6017752
+    },
+    {
+        "nome": "bbea32ccbdfe321831d0a69ad0b868a53dd840",
+        "tamanho_bytes": 934,
+        "ultima_modificacao": 1717805517.315066
+    },
+    {
+        "nome": "63e79ca364ed2c62aa5e8a0d3654698a5dae5c",
+        "tamanho_bytes": 243,
+        "ultima_modificacao": 1717965136.8460107
+    },
+    {
+        "nome": "a176bd119535cadef90111dcdf756a501c106d",
+        "tamanho_bytes": 15895,
+        "ultima_modificacao": 1717805517.3645813
+    },
+    {
+        "nome": "f4f6c392a463bd8bc5993688f14ffbbcccbb15",
+        "tamanho_bytes": 178,
+        "ultima_modificacao": 1717809447.1291504
+    },
+    {
+        "nome": "df0e0a17d4d1f6cbeb68811db21dd8c19893aa",
+        "tamanho_bytes": 231,
+        "ultima_modificacao": 1717969439.6436627
+    },
+    {
+        "nome": "8d98b838d9bb3766eecd9b71a6238b533cf169",
+        "tamanho_bytes": 4056,
+        "ultima_modificacao": 1718219990.4848356
+    },
+    {
+        "nome": "de3dd8b06a7a937e17577577eb67aafeecda7a",
+        "tamanho_bytes": 1349,
+        "ultima_modificacao": 1717805518.2383456
+    },
+    {
+        "nome": "53254a346eb5d2aee1ec19dbcdf21a6080019b",
+        "tamanho_bytes": 3196,
+        "ultima_modificacao": 1717805517.3470733
+    },
+    {
+        "nome": "f0125613159a254fe7c5224c780deea6c21b85",
+        "tamanho_bytes": 2811,
+        "ultima_modificacao": 1718068007.0575998
+    },
+    {
+        "nome": "208ee8a3dceb9fb92ea2ba11da627e7b260a81",
+        "tamanho_bytes": 3330,
+        "ultima_modificacao": 1718139368.4055498
+    },
+    {
+        "nome": "49056310c6fd0afda0b0da3317c3f7b8be6366",
+        "tamanho_bytes": 2942,
+        "ultima_modificacao": 1717969086.3807583
+    },
+    {
+        "nome": "e5005d3cbc4a2bce5de89d64729dff5178652c",
+        "tamanho_bytes": 54,
+        "ultima_modificacao": 1717805543.290854
+    },
+    {
+        "nome": "d7cdf7db14bfb5a7530eda0e6ce1b959c63316",
+        "tamanho_bytes": 231,
+        "ultima_modificacao": 1717963075.2295706
+    },
+    {
+        "nome": "d11d93f525785c015d1b687647443cb3d3e9cb",
+        "tamanho_bytes": 178,
+        "ultima_modificacao": 1717963075.2325814
+    },
+    {
+        "nome": "4c93423d6b74c44b8dd06fbdb0ed85574c1ae8",
+        "tamanho_bytes": 261,
+        "ultima_modificacao": 1717805543.2843232
+    },
+    {
+        "nome": "5ebaca5c05f4a7178c1b1dd7f19bbb65328f60",
+        "tamanho_bytes": 1461,
+        "ultima_modificacao": 1717969086.382749
+    },
+    {
+        "nome": "6c40df7ba845d114a21d8ad88401a2bb3efc03",
+        "tamanho_bytes": 44876,
+        "ultima_modificacao": 1717805518.2623608
+    },
+    {
+        "nome": "865ca0079bf939b09c952e065ca79a92fb4ac1",
+        "tamanho_bytes": 65,
+        "ultima_modificacao": 1718139368.4077656
+    },
+    {
+        "nome": "73712892d9c592000284afc5060cba0453e98e",
+        "tamanho_bytes": 179,
+        "ultima_modificacao": 1718144845.9447887
+    },
+    {
+        "nome": "72db582ca0085482688551c738cff6e5a01249",
+        "tamanho_bytes": 34132,
+        "ultima_modificacao": 1717805517.324058
+    },
+    {
+        "nome": "68b0c8c2aa7fd1cb6b0a538e3e5eeb21baa659",
+        "tamanho_bytes": 290,
+        "ultima_modificacao": 1717805517.3440819
+    },
+    {
+        "nome": "971b1855a2e676fca5868b8e257f06cdf8cc3e",
+        "tamanho_bytes": 2770,
+        "ultima_modificacao": 1717805517.3170643
+    },
+    {
+        "nome": "b22e630c36945d96ec1e052093d2913cc44df3",
+        "tamanho_bytes": 462923,
+        "ultima_modificacao": 1717805517.5828235
+    },
+    {
+        "nome": "35d5b73aaaaf780e766f8a6b18d685d12be777",
+        "tamanho_bytes": 99,
+        "ultima_modificacao": 1717805543.2868464
+    },
+    {
+        "nome": "eb170f7a646647197ddc4e4af95ab8cb7b88f7",
+        "tamanho_bytes": 185,
+        "ultima_modificacao": 1718217054.4813964
+    },
+    {
+        "nome": "e76ae7c6669247176c498614e23d8cfa85560b",
+        "tamanho_bytes": 222,
+        "ultima_modificacao": 1717805517.5509846
+    },
+    {
+        "nome": "00186b5e019ca02a2e9200ea3f2542f9caff4c",
+        "tamanho_bytes": 199,
+        "ultima_modificacao": 1717805543.2878628
+    },
+    {
+        "nome": "9e6bb82317127976465ec3f5ecabaac0bc6da4",
+        "tamanho_bytes": 3380,
+        "ultima_modificacao": 1718217031.0387037
+    },
+    {
+        "nome": "460a1c072ef9205660d37f565f3d2d00231996",
+        "tamanho_bytes": 261,
+        "ultima_modificacao": 1718217054.4695108
+    },
+    {
+        "nome": "81061ad236476f35615d9b585a29b655089858",
+        "tamanho_bytes": 450,
+        "ultima_modificacao": 1717805518.8631015
+    },
+    {
+        "nome": "ead2370b686d79381952519c778e4c169d0c05",
+        "tamanho_bytes": 753,
+        "ultima_modificacao": 1717805518.8703706
+    },
+    {
+        "nome": "fb7431d06fdeae5b59036aa4a5185f7eac6d87",
+        "tamanho_bytes": 243,
+        "ultima_modificacao": 1718139394.896654
+    },
+    {
+        "nome": "430051bffe9da38b055dd4e44bc1eaeaff5ac5",
+        "tamanho_bytes": 2901,
+        "ultima_modificacao": 1717965100.357272
+    },
+    {
+        "nome": "b87a05e01e39953fa065b308ce995a7e40cd4c",
+        "tamanho_bytes": 2804,
+        "ultima_modificacao": 1717809440.4253848
+    },
+    {
+        "nome": "8fb91af0e2775d755630532b362b5a53538d8b",
+        "tamanho_bytes": 129,
+        "ultima_modificacao": 1717805543.3009038
+    },
+    {
+        "nome": "cb933842de83e967da5a210715ac118be3491d",
+        "tamanho_bytes": 262,
+        "ultima_modificacao": 1718218513.2555537
+    },
+    {
+        "nome": "3b33d8b22d6ca6df5b4ac9690f47c2f335791a",
+        "tamanho_bytes": 2879,
+        "ultima_modificacao": 1717805517.597376
+    },
+    {
+        "nome": "3a864d5dadb3cc8e8ee1749bd50d5ced137d0e",
+        "tamanho_bytes": 193,
+        "ultima_modificacao": 1718220037.0856593
+    },
+    {
+        "nome": "033432a0a1b98b5686cc053ee80f52b4b324e9",
+        "tamanho_bytes": 243,
+        "ultima_modificacao": 1717809447.1196232
+    },
+    {
+        "nome": "d05efd54783fc5cdf8fa5d46584fb4b12fec75",
+        "tamanho_bytes": 260,
+        "ultima_modificacao": 1718139394.8996513
+    },
+    {
+        "nome": "dc9c91688875e846c2dc81f8e0b61e22a6504c",
+        "tamanho_bytes": 1314,
+        "ultima_modificacao": 1717809440.4305913
+    },
+    {
+        "nome": "6f1cf4ed9ed358f16733aabbd43a6ecafd7b4e",
+        "tamanho_bytes": 1374,
+        "ultima_modificacao": 1717805517.328066
+    },
+    {
+        "nome": "09c5f4c8de56bb74a5af7117f293a559602b40",
+        "tamanho_bytes": 243,
+        "ultima_modificacao": 1718144845.9397883
+    },
+    {
+        "nome": "721501779065d8d5d4cbbe032d2a4feb507c22",
+        "tamanho_bytes": 260,
+        "ultima_modificacao": 1718218513.2585657
+    },
+    {
+        "nome": "b2d8828064cc541764277eeb170f7b7d69fd6c",
+        "tamanho_bytes": 1231,
+        "ultima_modificacao": 1717805517.3500855
+    },
+    {
+        "nome": "fb0c38783741c0e3edd1e22386a768ecceaa28",
+        "tamanho_bytes": 243,
+        "ultima_modificacao": 1717963075.2280664
+    },
+    {
+        "nome": "2d7bd5327ab6eaa25d54270e74fb1777117f44",
+        "tamanho_bytes": 2876,
+        "ultima_modificacao": 1717963046.321475
+    },
+    {
+        "nome": "7fa213f5b6eeb81f8b33fa76d1499dea8fb88f",
+        "tamanho_bytes": 3327,
+        "ultima_modificacao": 1717805517.5429723
+    },
+    {
+        "nome": "543d35d2600dfa8dac464d97b1dc19e0531bc4",
+        "tamanho_bytes": 262,
+        "ultima_modificacao": 1718068026.599823
+    },
+    {
+        "nome": "c199d735a32d4da29557fea15efdb39bdf9165",
+        "tamanho_bytes": 166,
+        "ultima_modificacao": 1718139394.9026532
+    },
+    {
+        "nome": "f1c6c5d136ac20e9d9528d37c2a4cc9ffdf8e4",
+        "tamanho_bytes": 261,
+        "ultima_modificacao": 1718144845.9407907
+    },
+    {
+        "nome": "168b1659eb94db4f07e717cb93d1a4f3988ef2",
+        "tamanho_bytes": 242,
+        "ultima_modificacao": 1718068026.6023335
+    },
+    {
+        "nome": "95a4f8ddaed0c9e47db8ce2d59d7b10817ca86",
+        "tamanho_bytes": 231,
+        "ultima_modificacao": 1718068026.604337
+    },
+    {
+        "nome": "8973d65febdb83346e10079f000b1e6a8fcfcc",
+        "tamanho_bytes": 3129,
+        "ultima_modificacao": 1717805517.587838
+    },
+    {
+        "nome": "92f9cd10277c85747c86c905926899cdfadcfe",
+        "tamanho_bytes": 230,
+        "ultima_modificacao": 1717805543.2958581
+    },
+    {
+        "nome": "6c286884ec9ca05ba499efbf8b6cd73f92792f",
+        "tamanho_bytes": 1859,
+        "ultima_modificacao": 1717965100.3644817
+    },
+    {
+        "nome": "8f520c345f9d3404a5f3fe6770945af6069d9e",
+        "tamanho_bytes": 1625,
+        "ultima_modificacao": 1717963046.324479
+    },
+    {
+        "nome": "d51cb28d69321241baf8a1587802428fd9a4e9",
+        "tamanho_bytes": 2223,
+        "ultima_modificacao": 1718139368.4040384
+    },
+    {
+        "nome": "9370513a4b18f6b33fe719ae3d8ef79c9261d8",
+        "tamanho_bytes": 177,
+        "ultima_modificacao": 1717809573.460331
+    },
+    {
+        "nome": "98238637f0d011ef76ce8c15d643ac666ff44d",
+        "tamanho_bytes": 1470,
+        "ultima_modificacao": 1717809557.0384073
+    },
+    {
+        "nome": "ff21457df0c4021de6cb9f390846a9f3eccbbd",
+        "tamanho_bytes": 76,
+        "ultima_modificacao": 1718217031.0402298
+    },
+    {
+        "nome": "224ab9dd3525bce60ef22ab22e85ff19cf3d55",
+        "tamanho_bytes": 1108,
+        "ultima_modificacao": 1717805517.3350792
+    },
+    {
+        "nome": "2b763a6a1350f58f90afe14b439b51f72cc516",
+        "tamanho_bytes": 2223,
+        "ultima_modificacao": 1718217031.0367064
+    },
+    {
+        "nome": "313b9553e695e153881939fcf9b11e449509b5",
+        "tamanho_bytes": 194,
+        "ultima_modificacao": 1717969439.6499598
+    },
+    {
+        "nome": "9623e8afae42b0a4973c389c794a192f97625e",
+        "tamanho_bytes": 261,
+        "ultima_modificacao": 1718139394.8932111
+    },
+    {
+        "nome": "b9865a26c1f4a443b3d265bc5eb8ed6b02b9ba",
+        "tamanho_bytes": 268,
+        "ultima_modificacao": 1717805517.311061
+    },
+    {
+        "nome": "5e5013cc51bd55770f574ceb5f7bcf54c03db8",
+        "tamanho_bytes": 228,
+        "ultima_modificacao": 1718220037.0766084
+    },
+    {
+        "nome": "58c971dbaef89d8b2b87db9dbad9559c2b4238",
+        "tamanho_bytes": 253,
+        "ultima_modificacao": 1717805517.6053617
+    },
+    {
+        "nome": "d5786d99c1d5ddbadcd91007f5f97903cb3bc0",
+        "tamanho_bytes": 3157,
+        "ultima_modificacao": 1718068007.0536134
+    },
+    {
+        "nome": "6f57ee81b873dcadb52337c140d7b8a22318d2",
+        "tamanho_bytes": 2304,
+        "ultima_modificacao": 1717969086.3842537
+    },
+    {
+        "nome": "84812c021770201891c365e1b57169d530132a",
+        "tamanho_bytes": 37019,
+        "ultima_modificacao": 1718219990.4828477
+    },
+    {
+        "nome": "1140e0d6b0ebeff5d5350c05eb1afd68a76258",
+        "tamanho_bytes": 15049,
+        "ultima_modificacao": 1717805517.3700943
+    },
+    {
+        "nome": "a923f115ff3847f5ce7b5f8e6b6a40a14edd25",
+        "tamanho_bytes": 3893,
+        "ultima_modificacao": 1718144819.3418074
+    },
+    {
+        "nome": "ca643e2125be86831d2da48cfbf3a1548cad8f",
+        "tamanho_bytes": 261,
+        "ultima_modificacao": 1717969439.6386633
+    },
+    {
+        "nome": "fe28b2e49a789adbb33b822224d04aaf663f37",
+        "tamanho_bytes": 370,
+        "ultima_modificacao": 1717805518.8651106
+    },
+    {
+        "nome": "823d0cdb014466b02e51d6040ff24425b33c42",
+        "tamanho_bytes": 591,
+        "ultima_modificacao": 1717805517.3400767
+    },
+    {
+        "nome": "3da9caa7935f6dfd2189f6eaa88d1556d33190",
+        "tamanho_bytes": 261,
+        "ultima_modificacao": 1717963075.225119
+    },
+    {
+        "nome": "4657a1d60102a0b1974de377625583ccb2e565",
+        "tamanho_bytes": 1419,
+        "ultima_modificacao": 1717809440.4342334
+    },
+    {
+        "nome": "eb8b250295e936d0a562d2d9e73730d12032b7",
+        "tamanho_bytes": 243,
+        "ultima_modificacao": 1718217054.4758792
+    },
+    {
+        "nome": "b910d5ff2ec954ad77a3695a006dc12c12acd1",
+        "tamanho_bytes": 242,
+        "ultima_modificacao": 1717805543.2928603
+    },
+    {
+        "nome": "910b72c0028a560d6aef4bc2cc464b62febf56",
+        "tamanho_bytes": 2222,
+        "ultima_modificacao": 1718144819.3438165
+    },
+    {
+        "nome": "6cfa5070b405ee31889ea5d45a641da81e5301",
+        "tamanho_bytes": 3202,
+        "ultima_modificacao": 1718218438.016076
+    },
+    {
+        "nome": "c559d4c4431a4cba0a4c7dc0a0e0a16d298add",
+        "tamanho_bytes": 243,
+        "ultima_modificacao": 1717969439.6416638
+    },
+    {
+        "nome": "5bea87559b7b021517db0328e28c830c53e288",
+        "tamanho_bytes": 3892,
+        "ultima_modificacao": 1718217031.0348165
+    },
+    {
+        "nome": "628266b351622e8b1ffcc6f42f2eacfad40adf",
+        "tamanho_bytes": 439,
+        "ultima_modificacao": 1717805543.289925
+    },
+    {
+        "nome": "ae0f18468a377bc8f17e884a32529cd8faa8c2",
+        "tamanho_bytes": 960,
+        "ultima_modificacao": 1717805517.313059
+    },
+    {
+        "nome": "a5e69683dc5d9a48e91f0b61d32c454c6847e3",
+        "tamanho_bytes": 260,
+        "ultima_modificacao": 1718217054.4778771
+    },
+    {
+        "nome": "88d9cf73393004e5a13dfd3c50bf0eef536783",
+        "tamanho_bytes": 765,
+        "ultima_modificacao": 1718219990.4858353
+    },
+    {
+        "nome": "1409db6b68bc7fc16922de1e1d3d61b822ae99",
+        "tamanho_bytes": 2978035,
+        "ultima_modificacao": 1717805517.5083451
+    },
+    {
+        "nome": "222229fc5c281c809b18bbfcfb5cd1fecbc255",
+        "tamanho_bytes": 230,
+        "ultima_modificacao": 1717809447.1226237
+    },
+    {
+        "nome": "afd11c1ede3da9f63600dad1f440aaa00677d4",
+        "tamanho_bytes": 9389,
+        "ultima_modificacao": 1717805517.546013
+    },
+    {
+        "nome": "bddb3854b0b7be5b993d27ce0cd3356a21ca0a",
+        "tamanho_bytes": 2224,
+        "ultima_modificacao": 1718218438.0140765
+    },
+    {
+        "nome": "d971c1d351fd4adb5ccb6868e0e9afa61dd9ee",
+        "tamanho_bytes": 60,
+        "ultima_modificacao": 1717805543.2918553
+    },
+    {
+        "nome": "95e3de3cbcb03ce72eaae5cc6c0be44ff3cba2",
+        "tamanho_bytes": 243,
+        "ultima_modificacao": 1717809573.4496553
+    },
+    {
+        "nome": "337963d96b07a2a86f4b7898eaf49890d9d34f",
+        "tamanho_bytes": 58,
+        "ultima_modificacao": 1717805543.2938664
+    },
+    {
+        "nome": "ORIG_HEAD",
+        "tamanho_bytes": 41,
+        "ultima_modificacao": 1718050364.4790823
+    },
+    {
+        "nome": "main",
+        "tamanho_bytes": 41,
+        "ultima_modificacao": 1718220037.0876577
+    },
+    {
+        "nome": "main",
+        "tamanho_bytes": 41,
+        "ultima_modificacao": 1718220043.8295014
+    },
+    {
+        "nome": "Client$1.class",
+        "tamanho_bytes": 1678,
+        "ultima_modificacao": 1717615790.6715188
+    },
+    {
+        "nome": "Client$2.class",
+        "tamanho_bytes": 1597,
+        "ultima_modificacao": 1717615790.6755157
+    },
+    {
+        "nome": "Client.class",
+        "tamanho_bytes": 6919,
+        "ultima_modificacao": 1718217282.992515
+    },
+    {
+        "nome": "Client.exe",
+        "tamanho_bytes": 67645,
+        "ultima_modificacao": 1718219907.6104412
+    },
+    {
+        "nome": "Client.jar",
+        "tamanho_bytes": 4157,
+        "ultima_modificacao": 1718219779.7404702
+    },
+    {
+        "nome": "Client.java",
+        "tamanho_bytes": 9319,
+        "ultima_modificacao": 1718217070.4974203
+    },
+    {
+        "nome": "launch4j.log",
+        "tamanho_bytes": 3536,
+        "ultima_modificacao": 1718219909.6996071
     },
     {
         "nome": "criador-json.py",
@@ -10,33 +775,143 @@
         "ultima_modificacao": 1716421353.1097488
     },
     {
+        "nome": "info_pasta_atual.json",
+        "tamanho_bytes": 1080,
+        "ultima_modificacao": 1716421355.8138916
+    },
+    {
+        "nome": "README.txt",
+        "tamanho_bytes": 427,
+        "ultima_modificacao": 1716423720.6252549
+    },
+    {
+        "nome": "Analysis-00.toc",
+        "tamanho_bytes": 186557,
+        "ultima_modificacao": 1717610563.1062315
+    },
+    {
+        "nome": "base_library.zip",
+        "tamanho_bytes": 1332263,
+        "ultima_modificacao": 1717610559.5664513
+    },
+    {
+        "nome": "EXE-00.toc",
+        "tamanho_bytes": 153968,
+        "ultima_modificacao": 1717610567.750535
+    },
+    {
+        "nome": "pyimod01_archive.pyc",
+        "tamanho_bytes": 5648,
+        "ultima_modificacao": 1717610563.1136312
+    },
+    {
+        "nome": "pyimod02_importers.pyc",
+        "tamanho_bytes": 24359,
+        "ultima_modificacao": 1717610563.1216497
+    },
+    {
+        "nome": "pyimod03_ctypes.pyc",
+        "tamanho_bytes": 6170,
+        "ultima_modificacao": 1717610563.125791
+    },
+    {
+        "nome": "pyimod04_pywin32.pyc",
+        "tamanho_bytes": 1643,
+        "ultima_modificacao": 1717610563.128793
+    },
+    {
+        "nome": "struct.pyc",
+        "tamanho_bytes": 305,
+        "ultima_modificacao": 1717610563.109234
+    },
+    {
+        "nome": "PKG-00.toc",
+        "tamanho_bytes": 152155,
+        "ultima_modificacao": 1717610566.3566656
+    },
+    {
+        "nome": "PYZ-00.pyz",
+        "tamanho_bytes": 2993466,
+        "ultima_modificacao": 1717610563.6246407
+    },
+    {
+        "nome": "PYZ-00.toc",
+        "tamanho_bytes": 35477,
+        "ultima_modificacao": 1717610563.6296506
+    },
+    {
+        "nome": "server_service.pkg",
+        "tamanho_bytes": 13232905,
+        "ultima_modificacao": 1717610566.3411415
+    },
+    {
+        "nome": "Tree-00.toc",
+        "tamanho_bytes": 126680,
+        "ultima_modificacao": 1717610561.8419385
+    },
+    {
+        "nome": "Tree-01.toc",
+        "tamanho_bytes": 12243,
+        "ultima_modificacao": 1717610561.8494463
+    },
+    {
+        "nome": "Tree-02.toc",
+        "tamanho_bytes": 944,
+        "ultima_modificacao": 1717610561.851449
+    },
+    {
+        "nome": "warn-server_service.txt",
+        "tamanho_bytes": 5273,
+        "ultima_modificacao": 1717610563.0537875
+    },
+    {
+        "nome": "xref-server_service.html",
+        "tamanho_bytes": 463300,
+        "ultima_modificacao": 1717610563.0821812
+    },
+    {
+        "nome": "server_service.exe",
+        "tamanho_bytes": 13564681,
+        "ultima_modificacao": 1717610567.732511
+    },
+    {
         "nome": "server.py",
-        "tamanho_bytes": 2322,
-        "ultima_modificacao": 1716420920.2022927
+        "tamanho_bytes": 11121,
+        "ultima_modificacao": 1718218423.8777099
     },
     {
         "nome": "server_service.py",
-        "tamanho_bytes": 1036,
-        "ultima_modificacao": 1716419847.190733
+        "tamanho_bytes": 1008,
+        "ultima_modificacao": 1717627203.5482886
+    },
+    {
+        "nome": "server_service.spec",
+        "tamanho_bytes": 714,
+        "ultima_modificacao": 1717610555.503833
     },
     {
         "nome": "setup_services.bat",
-        "tamanho_bytes": 260,
-        "ultima_modificacao": 1716419260.35515
+        "tamanho_bytes": 1724,
+        "ultima_modificacao": 1717634858.267982
     },
     {
         "nome": "server.cpython-312.pyc",
-        "tamanho_bytes": 3497,
-        "ultima_modificacao": 1716420314.9435716
+        "tamanho_bytes": 5765,
+        "ultima_modificacao": 1717630453.0356278
     },
     {
         "nome": "server_service.cpython-312.pyc",
-        "tamanho_bytes": 2016,
-        "ultima_modificacao": 1716420315.3136134
+        "tamanho_bytes": 2039,
+        "ultima_modificacao": 1717631490.2462125
     },
     {
         "nome": "test_client.py",
-        "tamanho_bytes": 1992,
-        "ultima_modificacao": 1716420932.0772471
+        "tamanho_bytes": 2225,
+        "ultima_modificacao": 1717608608.783659
+    },
+    {
+        "nome": "users.json",
+        "tamanho_bytes": 84,
+        "ultima_modificacao": 1718215910.7756357
     }
 ]
