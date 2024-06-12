@@ -27,7 +27,7 @@ def handle_client(client_socket, client_address):
     
     try:
         while True:
-            message = client_socket.recv(1024).decode('utf-8')
+            message = client_socket.recv(1024).decode('utf-8').strip()
             if not message:
                 break
             print(f"Recebido de {username} ({client_address}): {message}")
@@ -162,26 +162,15 @@ def punch_mouse():
         screen_width, screen_height = pyautogui.size()
         x, y = pyautogui.position()
 
-        # Escolhendo uma direção aleatória (cima, baixo, esquerda ou direita)
-        direction = random.choice(['up', 'down', 'left', 'right'])
+        far_enough_distance = 300  
+        new_x = x
+        new_y = y
 
-        max_distance = min(screen_width, screen_height) // 2
-        
-        # Definindo a quantidade de movimento para o soco
-        punch_distance = random.randint(500, max_distance)
+        while abs(new_x - x) < far_enough_distance and abs(new_y - y) < far_enough_distance:
+            new_x = random.randint(0, screen_width - 1)
+            new_y = random.randint(0, screen_height - 1)
 
-        if direction == 'up':
-            new_y = max(0, y - punch_distance)
-            pyautogui.moveTo(x, new_y, duration=0.2)
-        elif direction == 'down':
-            new_y = min(screen_height, y + punch_distance)
-            pyautogui.moveTo(x, new_y, duration=0.2)
-        elif direction == 'left':
-            new_x = max(0, x - punch_distance)
-            pyautogui.moveTo(new_x, y, duration=0.2)
-        elif direction == 'right':
-            new_x = min(screen_width, x + punch_distance)
-            pyautogui.moveTo(new_x, y, duration=0.2)
+        pyautogui.moveTo(new_x, new_y, duration=0.2)
     finally:
         pyautogui.FAILSAFE = True
 
@@ -208,20 +197,17 @@ def broadcast_message(message, sender_socket=None, username=None):
     else:
         prefix = "Servidor"
 
-    message_s = f"{prefix}: {message}"
-    msg = message_s + '\n'
+    message_s = f"{prefix}: {message}\n"
     for client, _, _ in clients:
         if client != sender_socket:
             try:
-                client.sendall(msg.encode('utf-8'))
+                client.sendall(message_s.encode('utf-8'))
             except Exception as e:
                 print(f"Erro ao enviar mensagem para o cliente: {e}")
                 client.close()
                 clients.remove((client, _, _))
-        else:
-            client.sendall(msg.encode('utf-8'))
-            print(f"Mensagem do {prefix}: {message}")
-   
+    print(f"Mensagem do {prefix}: {message}")
+  
 def server_chat():
     def server_input():
         while True:
@@ -229,11 +215,11 @@ def server_chat():
             if message.strip().lower() == 'exits':
                 print("Servidor está encerrando o chat.")
                 broadcast_message("Servidor encerrou o chat.")
-                for client_socket, _ in clients:  # Alteração aqui
-                    client_socket.close() 
+                for client_socket, _ in clients:
+                    client_socket.close()
                 clients.clear()
                 break
-            broadcast_message((message + '\n'))
+            broadcast_message(message, sender_socket=None, username="servidor")
 
     threading.Thread(target=server_input).start()
 

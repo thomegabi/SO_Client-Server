@@ -105,7 +105,7 @@ public class Client {
                                     command = "chat";
                                     System.out.println("Digite a mensagem de chat (ou 'exits' para sair):");
                                     while (true) {
-                                        System.out.print("User: ");
+                                        //System.out.print("User: ");
                                         String chatMessage = scanner.nextLine().trim();
                                         writer.println(command + "|" + chatMessage);
                                         if (chatMessage.equalsIgnoreCase("exits")) {
